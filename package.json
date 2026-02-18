@@ -1,0 +1,20 @@
+{
+  "name": "online-voting-system",
+  "version": "1.0.0",
+  "description": "A production-ready, highly secure Online Voting System built with the MERN stack, Socket.io for real-time updates, and Tailwind CSS for a premium UI.",
+  "main": "index.js",
+  "scripts": {
+    "backend": "npm.cmd run dev --prefix backend",
+    "frontend": "npm.cmd run dev --prefix frontend",
+    "dev": "concurrently \"npm.cmd run backend\" \"npm.cmd run frontend\"",
+    "seed": "npm.cmd run seed --prefix backend",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
