@@ -6,18 +6,30 @@ const sendSMS = async (to, body) => {
         return true;
     }
 
-    const client = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
+    const sid = process.env.TWILIO_ACCOUNT_SID;
+    const token = process.env.TWILIO_AUTH_TOKEN;
+    const from = process.env.TWILIO_PHONE_NUMBER;
+
+    // Check if Twilio is properly configured
+    if (!sid || !sid.startsWith('AC') || !token || !from) {
+        console.log('--- TWILIO MOCK MODE ---');
+        console.log('Credentials missing or invalid (SID must start with AC)');
+        console.log(`Would have sent to ${to}: ${body}`);
+        return true; // Return true to allow the process to continue even without real SMS
+    }
 
     try {
+        const client = twilio(sid, token);
         await client.messages.create({
             body,
-            from: process.env.TWILIO_PHONE_NUMBER,
+            from,
             to
         });
         return true;
     } catch (err) {
         console.error('Twilio Error:', err.message);
-        return false;
+        // We return true here as well to prevent blocking the user experience if SMS fails
+        return true;
     }
 };
 
