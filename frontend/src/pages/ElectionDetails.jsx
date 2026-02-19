@@ -462,7 +462,7 @@ const ElectionDetails = () => {
 
                                             {/* Party Slogan */}
                                             <p className="party-slogan-new">
-                                                {candidate.slogan || `Hillaac waa Hiilka Ardayda`}
+                                                {candidate.slogan}
                                             </p>
 
                                             {/* Vote Button */}

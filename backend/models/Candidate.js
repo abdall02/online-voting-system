@@ -9,6 +9,10 @@ const candidateSchema = new mongoose.Schema({
         type: String,
         default: 'no-photo.jpg'
     },
+    slogan: {
+        type: String,
+        default: ''
+    },
     electionId: {
         type: mongoose.Schema.ObjectId,
         ref: 'Election',

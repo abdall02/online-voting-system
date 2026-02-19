@@ -28,7 +28,7 @@ const AdminElectionDetails = () => {
     const [isSaving, setIsSaving] = useState(false);
 
     // Renamed state to reflect "Party" context
-    const [newCandidate, setNewCandidate] = useState({ name: '', image: null });
+    const [newCandidate, setNewCandidate] = useState({ name: '', slogan: '', image: null });
 
     useEffect(() => {
         fetchDetails();
@@ -53,6 +53,7 @@ const AdminElectionDetails = () => {
 
         const formData = new FormData();
         formData.append('name', newCandidate.name);
+        formData.append('slogan', newCandidate.slogan);
         if (newCandidate.image) {
             formData.append('image', newCandidate.image);
         }
@@ -64,7 +65,7 @@ const AdminElectionDetails = () => {
                 }
             });
             toast.success('Party registered successfully');
-            setNewCandidate({ name: '', image: null });
+            setNewCandidate({ name: '', slogan: '', image: null });
             // Reset the file input manually
             e.target.reset();
             fetchDetails();
@@ -158,6 +159,20 @@ const AdminElectionDetails = () => {
                                 </div>
                                 <div className="form-group">
                                     <label className="form-label">
+                                        Manifesto / Slogan <span className="required">*</span>
+                                    </label>
+                                    <textarea
+                                        required
+                                        className="form-input"
+                                        placeholder="e.g., Hillaac waa Hiilka Ardayda"
+                                        value={newCandidate.slogan}
+                                        onChange={(e) => setNewCandidate({ ...newCandidate, slogan: e.target.value })}
+                                        rows="2"
+                                        style={{ resize: 'none', padding: '10px' }}
+                                    ></textarea>
+                                </div>
+                                <div className="form-group">
+                                    <label className="form-label">
                                         Party Logo <span className="required">*</span>
                                     </label>
                                     <div className="relative">
@@ -210,6 +225,7 @@ const AdminElectionDetails = () => {
 
                                                 <div className="admin-election-info">
                                                     <h4>{candidate.name}</h4>
+                                                    <p className="text-xs text-gray-500 italic mb-1 line-clamp-1">"{candidate.slogan}"</p>
                                                     <p>{candidate.voteCount} votes cast</p>
                                                 </div>
                                             </div>

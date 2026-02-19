@@ -48,18 +48,21 @@ const seedData = async () => {
         await Candidate.create([
             {
                 name: 'Alice Software',
+                slogan: 'Leading the future of Code!',
                 image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Alice',
                 electionId: election._id,
                 voteCount: 15
             },
             {
                 name: 'Bob Hardware',
+                slogan: 'Building solid foundations.',
                 image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Bob',
                 electionId: election._id,
                 voteCount: 22
             },
             {
                 name: 'Charlie Cyber',
+                slogan: 'Securing our digital borders.',
                 image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Charlie',
                 electionId: election._id,
                 voteCount: 8
