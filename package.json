@@ -4,10 +4,11 @@
   "description": "A production-ready, highly secure Online Voting System built with the MERN stack, Socket.io for real-time updates, and Tailwind CSS for a premium UI.",
   "main": "index.js",
   "scripts": {
-    "backend": "npm.cmd run dev --prefix backend",
-    "frontend": "npm.cmd run dev --prefix frontend",
-    "dev": "concurrently \"npm.cmd run backend\" \"npm.cmd run frontend\"",
-    "seed": "npm.cmd run seed --prefix backend",
+    "start": "node backend/server.js",
+    "backend": "npm run dev --prefix backend",
+    "frontend": "npm run dev --prefix frontend",
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\"",
+    "seed": "npm run seed --prefix backend",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
