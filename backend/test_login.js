@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 const testLogin = async () => {
-    const API_URL = 'http://localhost:5000/api';
+    const API_URL = 'https://online-voting-system-backend-1aph.onrender.com/api';
 
     console.log('--- Testing Admin Login ---');
     try {

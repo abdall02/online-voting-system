@@ -8,7 +8,7 @@ export const SocketProvider = ({ children }) => {
     const { token } = useContext(AuthContext);
     const [socket, setSocket] = useState(null);
 
-    const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'http://localhost:5000';
+    const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'https://online-voting-system-backend-1aph.onrender.com';
 
     useEffect(() => {
         const newSocket = io(SOCKET_URL, {

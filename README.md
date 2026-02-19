@@ -51,8 +51,8 @@ A production-ready, highly secure Online Voting System built with the MERN stack
    ```
    - Configure `.env` file in the `frontend` folder:
      ```env
-     VITE_API_URL=http://localhost:5000/api
-     VITE_SOCKET_URL=http://localhost:5000
+     VITE_API_URL=https://online-voting-system-backend-1aph.onrender.com/api
+     VITE_SOCKET_URL=https://online-voting-system-backend-1aph.onrender.com
      ```
 
 ### Running the App
