@@ -23,8 +23,11 @@ exports.register = async (req, res, next) => {
             password,
             role: role || 'voter',
             studentId,
-            phoneVerified: true // Automatically verify for now
+            phoneVerified: false
         });
+
+        // Generate and send OTP
+        await generateOTP(phone);
 
         res.status(201).json({
             success: true,
@@ -51,8 +54,8 @@ exports.verifyPhone = async (req, res, next) => {
         const { phone, code } = req.body;
         console.log(`Verifying phone: ${phone} with code: ${code}`);
 
-        // DEVELOPERS: Remove "code === '123456' ||" before publishing for production!
-        const isValid = code === '123456' || await verifyOTP(phone, code);
+        // Verify OTP using Twilio/Service (Bypass removed for production)
+        const isValid = await verifyOTP(phone, code);
         if (!isValid) {
             return res.status(400).json({ success: false, message: 'Invalid or expired OTP' });
         }
@@ -112,7 +115,16 @@ exports.login = async (req, res, next) => {
             return res.status(401).json({ success: false, message: 'Invalid credentials' });
         }
 
-        // Phone verification check removed as per request
+        // Check if phone is verified
+        if (!user.phoneVerified && user.role !== 'admin') {
+            await generateOTP(user.phone);
+            return res.status(200).json({
+                success: true,
+                requiresVerification: true,
+                phone: user.phone,
+                message: 'Please verify your phone number. A code has been sent.'
+            });
+        }
 
         res.status(200).json({
             success: true,

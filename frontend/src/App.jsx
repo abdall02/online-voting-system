@@ -68,6 +68,8 @@ const AppContent = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/verify" element={<Verify />} />
           <Route path="/admin-login" element={<AdminLogin />} />
           <Route path="/elections/:id" element={<ElectionDetails />} />
           <Route path="/results" element={<ResultsArchive />} />

@@ -25,6 +25,12 @@ const Login = () => {
 
         try {
             const loginRes = await axios.post(`${API_URL}/auth/login`, loginData);
+
+            if (loginRes.data.requiresVerification) {
+                toast.success('Verification required');
+                return navigate('/verify', { state: { phone: loginRes.data.phone } });
+            }
+
             login(loginRes.data);
             toast.success('Login successful! Welcome back.');
             navigate('/dashboard');
